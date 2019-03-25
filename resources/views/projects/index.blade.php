@@ -14,7 +14,7 @@
 
     <ul>
         @foreach($projects as $project)
-        <li>{{ 'Title: '.$project->title." Description: ".$project->description }}</li>   
+        <li><a href="/projects/{{$project->id}}">{{ 'Title: '.$project->title}}</a> {{" Description: ".$project->description }}</li>   
         @endforeach
         
     </ul>
