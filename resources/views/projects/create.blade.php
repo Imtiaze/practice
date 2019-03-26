@@ -15,15 +15,17 @@
          @csrf
          <div class="form-group">
             <label for="exampleInputEmail1">Name</label>
-            <input type="text" name='name' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="text" name='title'  class="form-control {{$errors->has('title') ? 'danger': ''}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
          </div>
          <div class="form-group">
             <label for="exampleInputPassword1">details</label>
-            <input type="text" name="details" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="text" name="description" class="form-control" id="exampleInputPassword1" placeholder="Password">
          </div>
          
          <button type="submit" class="btn btn-primary">Submit</button>
       </form>
    </div>
+   <br>
+   @include('errors')
 </body>
 </html>

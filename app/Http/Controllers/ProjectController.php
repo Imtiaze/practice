@@ -18,35 +18,55 @@ class ProjectController extends Controller
         return view('projects.create');
     }
 
-    public function edit($id){
-        $projects  =  Project::findOrFail($id);
-        return view('projects.edit',['project' => $projects]);
+    public function edit(Project $project){
+        return view('projects.edit',['project' => $project]);
     }
 
-    public function show($id){
-        $project = Project::findOrFail($id);
+    public function show(Project $project /*$id*/){
+        //$project = Project::findOrFail($id);
+
+        //return $project;
+
+
         return view('projects.show', compact('project'));
     }
 
-    public function update($id){
-       $project = Project::findOrFail($id);
-       $project->title = request('name');
-       $project->description = request('details');
-       $project->save();
+    public function update(Project $project){
+    //    $project = Project::findOrFail($id);
+    //    $project->title = request  ('name');
+    //    $project->description = request('details');
+    //    $project->save();
 
+        // $project->update([
+        //     'title' => request('name'),
+        //     'description' => request('details')
+        // ]);
 
-       return redirect('/projects');
+        $project->update(request(['title', 'description']));
+       return redirect('/projects/'.$project->id);
     }
 
     
     public function store(){
-       $project = new Project();
+       /*$project = new Project();
 
        $project->title = request('name');
        $project->description = request('details');
 
-       $project->save();
+       $project->save();*/
 
+    //    Project::create([
+    //        'title' => request('name'),
+    //        'description' => request('details')
+    //    ]);
+
+      // Project::create(request()->all());
+
+      $project = request()->validate([
+          'title' => 'required',
+          'description' => 'required',
+      ]);
+      Project::create($project);
        return redirect('/projects');
     }
 

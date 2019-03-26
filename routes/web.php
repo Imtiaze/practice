@@ -19,13 +19,17 @@ Route::get('/', function () {
 });
 
 
-// Route::resource('projects', 'ProjectController');
+Route::resource('projects', 'ProjectController');
 
-Route::get('/projects', 'ProjectController@index');
-Route::get('/projects/create', 'ProjectController@create');
-Route::get('/projects/{project}', 'ProjectController@show');
-Route::post('/projects', 'ProjectController@store');
+// Route::get('/projects', 'ProjectController@index');
+// Route::get('/projects/create', 'ProjectController@create');
+// Route::get('/projects/{project}', 'ProjectController@show');
+// Route::post('/projects', 'ProjectController@store');
 
-Route::get('/projects/{project}/edit', 'ProjectController@edit');
-Route::patch('/projects/{project}', 'ProjectController@update');
-Route::delete('/projects/{project}', 'ProjectController@destroy');
+// Route::get('/projects/{project}/edit', 'ProjectController@edit');
+// Route::patch('/projects/{project}', 'ProjectController@update');
+// Route::delete('/projects/{project}', 'ProjectController@destroy');
+
+
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
